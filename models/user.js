@@ -1,4 +1,4 @@
-const { ObjectID } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const mongoUtil = require('../helpers/mongoUtil.js');
 
 const collectionName = 'users';
@@ -10,7 +10,7 @@ exports.all = (callback) => {
 };
 
 exports.get = (id, callback) => {
-  mongoUtil.getDb().collection(collectionName).findOne({ _id: ObjectID(id) }, (err, result) => {
+  mongoUtil.getDb().collection(collectionName).findOne({ _id: ObjectId(id) }, (err, result) => {
     callback(err, result);
   });
 };
@@ -25,7 +25,7 @@ exports.new = (data, callback) => {
 };
 
 exports.update = (id, data, callback) => {
-  mongoUtil.getDb().collection(collectionName).updateOne({ _id: ObjectID(id) }, {
+  mongoUtil.getDb().collection(collectionName).updateOne({ _id: ObjectId(id) }, {
     $set: {
       username: data.username,
       password: data.password,
@@ -36,7 +36,7 @@ exports.update = (id, data, callback) => {
 };
 
 exports.delete = (id, callback) => {
-  mongoUtil.getDb().collection(collectionName).deleteOne({ _id: ObjectID(id) }, (err) => {
+  mongoUtil.getDb().collection(collectionName).deleteOne({ _id: ObjectId(id) }, (err) => {
     callback(err);
   });
 };
